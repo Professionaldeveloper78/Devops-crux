@@ -22,3 +22,17 @@ All review conversations must be resolved before merging.
 - Create a feature branch for each task.
 - Open a pull request to merge changes into main.
 - Do not push directly to main.
+
+## Package usage
+
+Install the published package:
+
+    npm install @professionaldeveloper78/devops-pipeline@1.1.0
+
+Run the build tool on one Markdown file:
+
+    npx devops-build SOURCE.md DEST.html
+
+Example:
+
+    npx devops-build notes.md notes.html
