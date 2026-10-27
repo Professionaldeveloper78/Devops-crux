@@ -20,6 +20,7 @@ test('every page is real HTML and not raw Markdown', () => {
 
 test('every page is non-empty', () => {
   for (const p of pages) {
-    assert.ok(fs.statSync('out/' + p).size > 0, p + ' is empty');
+    const html = fs.readFileSync('out/' + p, 'utf8');
+    assert.ok(html.trim().length > 0, `${p} must not be empty`);
   }
 });
