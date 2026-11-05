@@ -1,3 +1,4 @@
+
 // test/build.test.js — runs on Node's built-in test runner. No test framework.
 const { test } = require('node:test');
 const assert = require('node:assert');
@@ -24,6 +25,7 @@ test('every page is non-empty', () => {
     assert.ok(html.trim().length > 0, `${p} must not be empty`);
   }
 });
+
 test('each page title is its source filename', () => {
   for (const p of pages) {
     const html = fs.readFileSync('out/' + p, 'utf8');
@@ -33,4 +35,8 @@ test('each page title is its source filename', () => {
 
     assert.ok(html.includes('<title>' + expectedTitle + '</title>'));
   }
+});
+
+test('the services page exists', () => {
+  assert.ok(fs.existsSync('out/services.html'));
 });
