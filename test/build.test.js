@@ -27,6 +27,10 @@ test('every page is non-empty', () => {
 test('each page title is its source filename', () => {
   for (const p of pages) {
     const html = fs.readFileSync('out/' + p, 'utf8');
-    assert.ok(html.includes('<title>' + p.replace('.html', '') + '</title>'));
+    const expectedTitle = p.replace('.html', '')
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+
+    assert.ok(html.includes('<title>' + expectedTitle + '</title>'));
   }
 });
