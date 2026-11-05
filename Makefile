@@ -1,3 +1,4 @@
+
 SRC_DIR := src
 OUT_DIR := out
 SOURCES := $(wildcard $(SRC_DIR)/*.md)
@@ -35,3 +36,4 @@ clean:
 	@rm -rf $(OUT_DIR)
 
 ci: clean check test
+	npm pack
