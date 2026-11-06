@@ -34,3 +34,7 @@ test('each page title is its source filename', () => {
     assert.ok(html.includes('<title>' + expectedTitle + '</title>'));
   }
 });
+
+test('the services page exists', () => {
+  assert.ok(fs.existsSync('out/our-services.html'));
+});
