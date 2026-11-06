@@ -34,3 +34,4 @@ test('each page title is its source filename', () => {
     assert.ok(html.includes('<title>' + expectedTitle + '</title>'));
   }
 });
+test('this always fails', () => assert.ok(false));
