@@ -34,3 +34,7 @@ test('each page title is its source filename', () => {
     assert.ok(html.includes('<title>' + expectedTitle + '</title>'));
   }
 });
+
+test('exactly three pages are built', () => {
+  assert.strictEqual(pages.length, 3);
+});
