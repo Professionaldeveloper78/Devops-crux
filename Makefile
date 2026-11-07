@@ -10,9 +10,12 @@ node_modules: package-lock.json
 
 deps: node_modules
 
-.PHONY: all check build test clean ci deps
+.PHONY: all check build test clean ci deps lint package coverage
 
 all: test
+
+lint: node_modules
+	npm run --silent lint
 
 $(OUT_DIR):
 	mkdir -p $(OUT_DIR)
@@ -32,8 +35,16 @@ build: $(OUTPUTS)
 test: build
 	@npm test --silent
 
-clean:
-	@rm -rf $(OUT_DIR)
+coverage: build
+	@mkdir -p coverage
+	node --test --experimental-test-coverage \
+		--test-reporter=spec --test-reporter-destination=stdout \
+		--test-reporter=lcov --test-reporter-destination=coverage/lcov.info
 
-ci: clean check test
+clean:
+	@rm -rf $(OUT_DIR) coverage *.tgz
+
+package: test
 	npm pack
+
+ci: clean deps check lint test package
