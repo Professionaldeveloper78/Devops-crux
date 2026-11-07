@@ -13,6 +13,8 @@ deps: node_modules
 .PHONY: all check build test clean ci deps
 
 all: test
+lint: node_modules
+	npm run --silent lint
 
 $(OUT_DIR):
 	mkdir -p $(OUT_DIR)
@@ -35,5 +37,6 @@ test: build
 clean:
 	@rm -rf $(OUT_DIR)
 
-ci: clean check test
+ci: clean deps check lint test package
+package:
 	npm pack
